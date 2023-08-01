@@ -1,8 +1,10 @@
 const express = require("express");
+const sendEmailConPlantilla = require("../../nodemailer/sendEmailConPlantilla");
 const createUser = require("../../controllers/postUsersRegister");
 const userLogin = require("../../controllers/postLoginUser");
 const createAccessToken = require("../../utils/jwt");
 const allUserName = require("../../controllers/getAllUserName");
+const newPassword = require("../../controllers/putPassworUser");
 
 const userRouter = express.Router();
 
@@ -10,6 +12,9 @@ userRouter.post("/register", async (req, res) => {
   const { userName, email, password } = req.body;
   try {
     const newUser = await createUser(userName, email, password);
+    if (email) {
+      sendEmailConPlantilla(email, "newUser");
+    }
     if (newUser) res.status(200).json({ message: "user created successfully" });
   } catch (error) {
     if (error.message.includes("not available")) {
@@ -28,6 +33,8 @@ userRouter.post("/login", async (req, res) => {
       userName: userSession.userName,
       email: userSession.email,
       token: token,
+      role: userSession.role,
+      del: userSession.del,
     };
     res.status(200).json(userCredentials);
   } catch (error) {
@@ -48,6 +55,21 @@ userRouter.get("/allUserName", async (req, res) => {
     res.status(200).json(allName);
   } catch (error) {
     res.status(500).json({ Error: error.message });
+  }
+});
+
+userRouter.put("/update/password", async (req, res) => {
+  const { email } = req.query;
+  const { password } = req.body;
+  try {
+    await newPassword(email, password);
+    res.status(200).json({ message: "Password updated successfully" });
+  } catch (error) {
+    if (error.message.includes("system")) {
+      return res.status(404).json({ Error: error.message });
+    } else {
+      return res.status(500).json({ Error: error.message });
+    }
   }
 });
 
