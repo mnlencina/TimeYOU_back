@@ -33,7 +33,7 @@ authRouter.get(
       const userData = JSON.stringify(userCredentials);
       console.log(userData);
       res.redirect(
-        "http://localhost:5173/auth?data=" +
+        "https://timeyouback.up.railway.app/auth?data=" +
           encodeURIComponent(userData) +
           "&confirmation=true"
       );
