@@ -33,7 +33,7 @@ authRouter.get(
       const userData = JSON.stringify(userCredentials);
       console.log(userData);
       res.redirect(
-        "https://timeyouback.up.railway.app/auth?data=" +
+        "https://timeyou.vercel.app/auth?data=" +
           encodeURIComponent(userData) +
           "&confirmation=true"
       );

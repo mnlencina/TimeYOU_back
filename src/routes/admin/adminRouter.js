@@ -1,11 +1,11 @@
 const express = require("express");
 const selectedUser = require("../../controllers/getUserName");
+const createUser = require("../../controllers/postUsersRegister");
 const userEmail = require("../../controllers/getUserEmail");
 const allUsers = require("../../controllers/getAllUsers");
 const updateWatch = require("../../controllers/putAdminWatch");
 const allBuyUsers = require("../../controllers/getAllBuy");
 const updateUser = require("../../controllers/putAdminUser");
-const createUser = require("../../controllers/postUsersRegister");
 
 const adminRouter = express.Router();
 

@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 
 const io = new Server({
     cors:{
-        origin: "https://timeyouback.up.railway.app/"
+        origin: "http://localhost:3001/"
     }
 });
 
