@@ -17,7 +17,7 @@ const { MERCADO_PAGO } = process.env;
 const cors = require('cors');
 
 server.use(cors({
-  origin: 'https://timeyou.vercel.app/',
+  origin: 'https://timeyou.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true // Si es necesario, habilita el envío de cookies o credenciales
 }));
