@@ -16,13 +16,14 @@ module.exports = (sequelize) => {
       provider: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "stripe",
       },
       total: {
-        type: DataTypes.INTEGER,        
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       card: {
-        type: DataTypes.JSONB,        
+        type: DataTypes.JSONB,
         allowNull: false,
       },
     },
