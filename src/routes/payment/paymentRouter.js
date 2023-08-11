@@ -9,7 +9,7 @@ router.post("/create-checkout-session", async (req, res) => {
   try {
     const { userName, model, amount } = req.body;
 
-    const YOUR_DOMAIN = "https://timeyou.vercel.app/"; // Reemplaza con el dominio de tu aplicación
+    const YOUR_DOMAIN = "https://timeyou.vercel.app"; // Reemplaza con el dominio de tu aplicación
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [
@@ -25,7 +25,7 @@ router.post("/create-checkout-session", async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: `${YOUR_DOMAIN}/home?success=true`,
+      success_url: `${YOUR_DOMAIN}/shopping/resumen?success=true`,
       cancel_url: `${YOUR_DOMAIN}/shopping?canceled=true`,
     });
 
